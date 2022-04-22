@@ -1,2 +1,3 @@
-docker run --detach --name some-mariadb --env MARIADB_USER=example-user --env\
-MARIADB_PASSWORD=my_cool_secret --env MARIADB_ROOT_PASSWORD=my-secret-pw  mariadb:latest
+docker run --detach --name some-mariadb --env MARIADB_USER=sylducam --env\
+MARIADB_PASSWORD=blabla --env MARIADB_ROOT_PASSWORD=blabla  mariadb:latest
+# should I use "latest" >> see message from tglory on compatibility OS/pkg (Debian 10/11)
