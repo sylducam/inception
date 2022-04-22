@@ -1,6 +1,7 @@
 always check running containers and images when you start a new work session
 
 22 april 2022
+According to Tristan I should use Debian Buster. I have downloaded it in your sgoinfre, install it on a new VM
 MariaDB seems ok, keep on understanding the Dockerfile if needed and if you need to add more stuff
 in it, else do all the checks needed for this database and then you will have other Dockerfiles to
 write.
