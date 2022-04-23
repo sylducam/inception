@@ -1,15 +1,19 @@
-always check running containers and images when you start a new work session
+
+
+*** Always check running containers and images when you start a new work session
 
 22 april 2022
-According to Tristan I should use Debian Buster. I have downloaded it in your sgoinfre, install it on a new VM
+Install Docker Engine tab : check if it's finished
+According to Tristan I should use Debian Buster. I have downloaded it in your sgoinfre, install it
+on a new VM
+You have a new saved Item in Stack regarding building images that seems to be about something you
+might have not yet read about in the subject.
 MariaDB seems ok, keep on understanding the Dockerfile if needed and if you need to add more stuff
 in it, else do all the checks needed for this database and then you will have other Dockerfiles to
 write.
 Find out the version of latest MariaDB (2 still opened tabs for this in chrome)
 DockerCompose : tab still open on Install Docker Compose
-Install Docker Engine tab : check if it's finished
-You have a new saved Item in Stack regarding building images that seems to be about something you might have not yet read about in the subject.
---- Get started with Docker Compose tab most important
+Get started with Docker Compose tab most important
 
 ports 80 and 443 for http and https
 
