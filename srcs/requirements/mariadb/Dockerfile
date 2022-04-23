@@ -25,4 +25,4 @@ CMD ["mysqld"]
 # hub.docker.com's way below keep on using it if you find it usefull, else, I am adding an
 # rough example of MariaDB Dockefile above
 # docker run --detach --name some-mariadb --env MARIADB_USER=sylducam --env MARIADB_PASSWORD=blabla --env MARIADB_ROOT_PASSWORD=blabla  mariadb:latest
-# should I use "latest" >> see message from tglory on compatibility OS/pkg (Debian 10/11)
+# !! latest forbiden

@@ -11,9 +11,51 @@ might have not yet read about in the subject.
 MariaDB seems ok, keep on understanding the Dockerfile if needed and if you need to add more stuff
 in it, else do all the checks needed for this database and then you will have other Dockerfiles to
 write.
-Find out the version of latest MariaDB (2 still opened tabs for this in chrome)
 DockerCompose : tab still open on Install Docker Compose
 Get started with Docker Compose tab most important
+Read about daemons, PID 1
+
+L’utilisation de network: host ou --link ou encore links: est bien
+entendu interdite. La ligne network(s) doit être présente dans
+votre fichier docker-compose.yml. Vos containers ne doivent pas être
+démarrés avec une commande faisant tourner une boucle infinie. Cela
+concerne donc aussi les commandes utilisées comme entrypoint, dont
+celles qui sont dans un script. Exemples de "hacky patch" interdits :
+taif -f, bash, sleep infinity, while true, etc. ...
+
+Deux utilisateurs seront présents dans votre base de données WordPress, l’un d’eux étant le compte Admin. L’username de l’Admin ne devra pas comporter "admin" ou "Admin" (exemples : admin, administrator, administrateur, administratrice, admin-123, etc. ...).
+
+Vos volumes seront disponibles dans le dossier /home/login/data de la
+machine hôte utilisant Docker. Bien entendu, remplacez le "login" par
+le vôtre.
+
+Pour des questions de lisibilité, il faudra configurer votre nom de domaine afin qu’il pointe vers votre adresse IP locale.
+Ce nom de domaine sera login.42.fr. A nouveau, vous utiliserez votre login.
+Par exemple, si votre login est wil, wil.42.fr redirigera vers l’adresse IP pointant vers le site web de wil.
+
+Le tag latest est interdit.
+Aucun mot de passe ne doit être présent dans vos Dockerfiles.
+L’utilisation des variables d’environnement est obligatoire.
+La mise en place d’un fichier .env afin de stocker vos variables
+d’environnement est fortement conseillée. Ce fichier devra être rangé
+à la racine de votre dossier srcs.
+Votre container NGINX doit être le seul point d’entrée de votre
+infrastructure par le port 443 uniquement en utilisant le protocole
+TLSv1.2 ou TLSv1.3.
+
+example .env :
+$> cat srcs/.env
+DOMAIN_NAME=wil.42.fr
+# certificates
+CERTS_=./XXXXXXXXXXXX
+# MYSQL SETUP
+MYSQL_ROOT_PASSWORD=XXXXXXXXXXXX
+MYSQL_USER=XXXXXXXXXXXX
+MYSQL_PASSWORD=XXXXXXXXXXXX
+[...]
+$>
+
+latest forbiden
 
 ports 80 and 443 for http and https
 
