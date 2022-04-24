@@ -14,6 +14,10 @@ RUN apt-get update && apt-get install -y mariadb-client mariadb-server
 
 EXPOSE 3306
 
+# labels are mandatory from docker 1.3 and very usefull to avoid having multiple same containers
+LABEL version="1.0"
+LABEL description="MariaDB Server"
+
 HEALTHCHECK --start-period=5m \
   CMD mariadb -e 'SELECT @@datadir;' || exit 1
 
