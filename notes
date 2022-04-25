@@ -1,5 +1,3 @@
-
-
 *** Always check running containers and images when you start a new work session
 
 22 april 2022
@@ -14,6 +12,10 @@ write.
 DockerCompose : tab still open on Install Docker Compose
 Get started with Docker Compose tab most important
 Read about daemons, PID 1
+
+A Project is an individual deployment of an application specification on a platform. A project’s name is used to group resources together and isolate them from other applications or other installation of the same Compose specified application with distinct parameters. A Compose implementation creating resources on a platform MUST prefix resource names by project and set the label com.docker.compose.project.
+
+Project name can be set explicitly by top-level name attribute. Compose implementation MUST offer a way for user to set a custom project name and override this name, so that the same compose.yaml file can be deployed twice on the same infrastructure, without changes, by just passing a distinct name.
 
 L’utilisation de network: host ou --link ou encore links: est bien
 entendu interdite. La ligne network(s) doit être présente dans
