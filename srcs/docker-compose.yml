@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  db:
+    build:
+      context: ./srcs/requirements/mariadb
+      dockerfile: Dockerfile
+    networks:
+      - inception
+
+  wordpress:
+    build:
+      context: ./srcs/requirements/wordpress
+      dockerfile: Dockerfile
+    networks:
+      - inception
+
+  nginx:
+    build:
+      context: ./srcs/requirements/nginx
+      dockerfile: Dockerfile
+    networks:
+      - inception
+
+volumes:
+  wordpress-db:
+
+  wordpress-files:
+
+networks: 
+  inception:

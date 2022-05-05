@@ -57,6 +57,8 @@ MYSQL_PASSWORD=XXXXXXXXXXXX
 [...]
 $>
 
+Vos containers devront redémarrer en cas de crash.
+
 latest forbiden
 
 ports 80 and 443 for http and https
