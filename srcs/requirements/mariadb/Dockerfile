@@ -1,11 +1,18 @@
 # buster or bullseye ?
-FROM debian:bullseye
+FROM debian:buster
 
 # ARG DEBIAN_FRONTEND=noninteractive **
 
 # keep both server and client ? one of them ?
 # maybe install apt-utils via docker-compose or in each Dockerfile
-RUN apt-get update && apt-get install -y mariadb-client mariadb-server
+RUN apt-get update && apt-get install -y mariadb-client mariadb-server service mysql start\
+aptitude -y install expect SECURE_MYSQL=$(expect -c "set timeout 10 spawn mysql_secure_installation\
+expect \"Enter current password for root (enter for none):\" send \"$MYSQL\r\"\
+expect \"Change the root password?\" send \"n\r\" expect \"Remove anonymous users?\" send \"n\r\"\
+expect \"Disallow root login remotely?\" send \"n\r\"\
+expect \"Remove test database and access to it?\" send \"n\r\"\
+expect \"Reload privilege tables now?\" send \"n\r\" expect eof ") echo "$SECURE_MYSQL"\
+aptitude -y purge expect mysql -u root  < mysql.sql
 # apt-utils & curl if you want not to have the debconf: delaying package configuration... warning 
 # ** adds to the line above
  
