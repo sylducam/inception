@@ -14,12 +14,21 @@ RUN apt-get update && apt-get install -y mariadb-client mariadb-server
 
 EXPOSE 3306
 
+RUN service mysql start
+RUN apt-get install -y aptitude expect
+RUN SECURE_MYSQL=$(expect -c "set timeout 10 spawn mysql_secure_installation\
+expect \"Enter current password for root (enter for none):\" send \"$MYSQL\r\"\
+expect \"Change the root password?\" send \"n\r\" expect \"Remove anonymous users?\" send \"n\r\"\
+expect \"Disallow root login remotely?\" send \"n\r\"\
+expect \"Remove test database and access to it?\" send \"n\r\"\
+expect \"Reload privilege tables now?\" send \"n\r\" expect eof ") echo "$SECURE_MYSQL"
+
 # labels are mandatory from docker 1.3 and very usefull to avoid having multiple same containers
 LABEL version="1.0"
 LABEL description="MariaDB Server"
 
-HEALTHCHECK --start-period=5m \
-  CMD mariadb -e 'SELECT @@datadir;' || exit 1
+# HEALTHCHECK --start-period=5m \
+  # CMD mariadb -e 'SELECT @@datadir;' || exit 1
 
 CMD ["mysqld"]
 
