@@ -5,7 +5,10 @@ FROM debian:buster
 
 # keep both server and client ? one of them ?
 # maybe install apt-utils via docker-compose or in each Dockerfile
-RUN apt-get update && apt-get install -y mariadb-client mariadb-server
+RUN apt-get upgrade && apt-get update && apt-get install -y mariadb-client mariadb-server
+RUN apt-get install -y php7.3 php7.3-fpm php7.3-mysql php-common php7.3-cli php7.3-common
+RUN apt-get install -y php7.3-json php7.3-opcache php7.3-readline php-mbstring php-zip php-gd
+RUN apt-get install -y php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlrpc php-zip
 # apt-utils & curl if you want not to have the debconf: delaying package configuration... warning 
 # ** adds to the line above
  
@@ -16,6 +19,7 @@ EXPOSE 3306
 
 RUN service mysql start
 RUN apt-get install -y aptitude expect
+
 RUN SECURE_MYSQL=$(expect -c "set timeout 10 spawn mysql_secure_installation\
 expect \"Enter current password for root (enter for none):\" send \"$MYSQL\r\"\
 expect \"Change the root password?\" send \"n\r\" expect \"Remove anonymous users?\" send \"n\r\"\

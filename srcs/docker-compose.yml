@@ -5,6 +5,8 @@ services:
     build:
       context: requirements/mariadb
       dockerfile: Dockerfile
+    ports:
+      - 3306:3306
     networks:
       - inception
 
