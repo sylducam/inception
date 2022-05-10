@@ -15,6 +15,8 @@ EXPOSE 3307
 # labels are mandatory from docker 1.3 and very usefull to avoid having multiple same containers
 LABEL description="MariaDB"
 
+RUN mysql -u root < tools/db-config.sql
+
 # I think I should use the two lines below
 # HEALTHCHECK --start-period=5m \
   # CMD mariadb -e 'SELECT @@datadir;' || exit 1

@@ -1,2 +1,3 @@
 CREATE DATABASE wordpress;
-GRANT ALL ON wordpress.* TO 'root'@'localhost' IDENTIFIED BY 'root' WITH GRANT OPTION;
+/* below is just a test, you will have to put the password in the .env file */
+GRANT ALL ON wordpress.* TO '$USER'@'localhost' IDENTIFIED BY 'root' WITH GRANT OPTION;
