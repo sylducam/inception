@@ -9,6 +9,9 @@ services:
       - 3307:3307
     networks:
       - inception
+    # command:
+      # tail -F anything
+# 2 line above to del
 
 #  wordpress:
 #    build:

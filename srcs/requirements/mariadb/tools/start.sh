@@ -6,6 +6,7 @@
 # fi
 
 #MYSQL
-mysql -u root  < db-config.sql
+service mysql start
+mysql -u root  < mariadb/tools/db-config.sql
 
-mysqld_safe
+/bin/sh usr/bin/mysqld_safe

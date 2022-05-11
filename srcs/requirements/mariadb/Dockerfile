@@ -9,7 +9,10 @@ RUN apt-get install -y mariadb-client mariadb-server
 # RUN apt-get install -y php7.3 php7.3-fpm php7.3-mysql php-common php7.3-cli php7.3-common
 # RUN apt-get install -y php7.3-json php7.3-opcache php7.3-readline php-mbstring php-zip php-gd
 # RUN apt-get install -y php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlrpc php-zip
- 
+
+COPY tools/start.sh mariadb/tools/start.sh
+COPY tools/db-config.sql mariadb/tools/db-config.sql
+
 EXPOSE 3307
 
 #PHPMYADMIN (REMAKE IT)
@@ -26,7 +29,7 @@ LABEL description="MariaDB"
 HEALTHCHECK --start-period=5m \
   CMD mariadb -e 'SELECT @@datadir;' || exit 1
 
-CMD ["/usr/bin/mysqld_safe"]
+CMD ["bash", "mariadb/tools/start.sh"]
 
 # hub.docker.com's way below keep on using it if you find it usefull, else, I am adding an
 # rough example of MariaDB Dockefile above
