@@ -12,14 +12,19 @@ RUN apt-get install -y mariadb-client mariadb-server
  
 EXPOSE 3307
 
+#PHPMYADMIN (REMAKE IT)
+# RUN wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz
+# RUN tar xf phpMyAdmin-latest-all-languages.tar.gz
+# RUN rm phpMyAdmin-latest-all-languages.tar.gz
+# RUN mv phpMyAdmin* /var/www/html/phpmyadmin
+
 # labels are mandatory from docker 1.3 and very usefull to avoid having multiple same containers
 LABEL description="MariaDB"
 
-RUN mysql -u root < tools/db-config.sql
-
-# I think I should use the two lines below
-# HEALTHCHECK --start-period=5m \
-  # CMD mariadb -e 'SELECT @@datadir;' || exit 1
+# I think I should use the two lines below (but I need to understand them better and adapt them to
+# my project)
+HEALTHCHECK --start-period=5m \
+  CMD mariadb -e 'SELECT @@datadir;' || exit 1
 
 CMD ["/usr/bin/mysqld_safe"]
 
