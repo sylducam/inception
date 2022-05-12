@@ -6,10 +6,13 @@
 # fi
 
 #MYSQL
-service mysql start
+# service mysql start
+cd /etc/init.d
+mysqld start
+cd /
 mysql -u root < mariadb/tools/db-config.sql
-# killall mysqld mysqld_safe
 /bin/sh /usr/bin/mysqld_safe
+# killall mysqld mysqld_safe
 # while :
 # do
 	# echo "Do something; hit [CTRL+C] to stop!"

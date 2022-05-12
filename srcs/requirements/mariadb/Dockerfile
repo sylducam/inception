@@ -7,6 +7,7 @@ RUN apt-get install -y vim
 RUN apt-get install -y procps
 RUN apt-get install -y mariadb-server
 RUN apt-get install -y mariadb-client
+RUN apt-get install -y php-fpm php-mysql
 # RUN apt-get install -y php7.3 php7.3-fpm php7.3-mysql php-common php7.3-cli php7.3-common
 # RUN apt-get install -y php7.3-json php7.3-opcache php7.3-readline php-mbstring php-zip php-gd
 # RUN apt-get install -y php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlrpc php-zip
