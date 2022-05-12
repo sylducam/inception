@@ -12,6 +12,8 @@ RUN apt-get install -y php-fpm php-mysql
 # RUN apt-get install -y php7.3-json php7.3-opcache php7.3-readline php-mbstring php-zip php-gd
 # RUN apt-get install -y php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlrpc php-zip
 
+# line above didn't change nothing
+COPY tools/my.cnf mariadb/tools/my.cnf
 COPY tools/start.sh mariadb/tools/start.sh
 COPY tools/db-config.sql mariadb/tools/db-config.sql
 

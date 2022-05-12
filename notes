@@ -1,5 +1,7 @@
 *** Always check running containers and images when you start a new work session
 
+del mariadb/tools/my.cnf ? It didn't fick the mysqld.sock error
+
 Makefile
 
 need sudo ?
