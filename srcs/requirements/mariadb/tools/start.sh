@@ -4,22 +4,28 @@
 # if []
 	# then
 # fi
-
-#MYSQL
-# service mysql start
-# add if condition above but get it right
-mysql_install_db --ldata=/var/lib/mysql --user=mysql
-mysqladmin -u root password "blabla"
-echo "test1\n"
-mv mariadb/tools/my.cnf /etc/mysql/my.cnf
-echo "test2\n"
-mysql -u root < mariadb/tools/db-config.sql
-chmod -R 755 /var/run/mysqld
-echo "test3\n"
-# /bin/sh /usr/bin/mysqld_safe
-mysqld_safe --bind-address=0.0.0.0
-# killall mysqld mysqld_safe
 # while :
 # do
-	# echo "Do something; hit [CTRL+C] to stop!"
+# 	echo "Do something; hit [CTRL+C] to stop!"
 # done
+#MYSQL
+# add if condition above but get it right
+service mysql start
+mv mariadb/tools/my.cnf /etc/mysql/my.cnf
+mysql -u root < mariadb/tools/db-config.sql
+/bin/sh /usr/bin/mysqld_safe
+# mysqld_safe --bind-address=0.0.0.0
+
+
+
+
+# mkdir -p /run/mysqld/
+# touch /run/mysqld/mysqld.sock
+# mysql_install_db --ldata=/var/lib/mysql --user=mysql
+# mysqladmin -u root password "blabla"
+# echo "test1\n"
+# echo "test2\n"
+# chmod -R 755 /var/run/mysqld
+# echo "test3\n"
+# killall mysqld mysqld_safe
+# 
