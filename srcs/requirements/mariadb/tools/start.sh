@@ -13,7 +13,10 @@
 service mysql start
 mv mariadb/tools/my.cnf /etc/mysql/my.cnf
 mysql -u root < mariadb/tools/db-config.sql
-/bin/sh /usr/bin/mysqld_safe
+sleep 1 # Waiting for mysql to finish the edit
+service mysql stop
+
+exec /usr/bin/mysqld_safe
 # mysqld_safe --bind-address=0.0.0.0
 
 
