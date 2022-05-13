@@ -17,6 +17,10 @@ RUN apt-get install -y coreutils
 COPY tools/my.cnf mariadb/tools/my.cnf
 COPY tools/start.sh mariadb/tools/start.sh
 COPY tools/db-config.sql mariadb/tools/db-config.sql
+COPY tools/config.sh mariadb/tools/config.sh
+
+RUN chmod 744 /mariadb/tools/config.sh
+RUN /mariadb/tools/config.sh
 
 EXPOSE 3307
 
