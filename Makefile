@@ -1,17 +1,17 @@
+DIR		=	cd srcs
+
 all		:	
-			docker-compose up --build srcs
+			$(DIR) && docker-compose up --build
 
 down	:	
-			docker-compose down srcs
+			$(DIR) && docker-compose down
 
-clean	:	
-			down
+clean	:	down
 			docker system prune -f
 			docker volume rm $$(docker volume ls -q)
 			docker network rm $$(docker network ls -q)
 
-fclean	:
-			clean
+fclean	:	clean
 			docker stop $(docker ps -a -q)
 			docker rm $(docker ps -a -q)
 			docker rmi -f $(docker images -a -q)
