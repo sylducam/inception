@@ -2,6 +2,8 @@
 
 you need to work on your db-config.sql file again and thw whole mariadb container
 
+change passwords, not blabla everywhere
+
 del mariadb/tools/my.cnf ? It didn't fix the mysqld.sock error
 
 Makefile
