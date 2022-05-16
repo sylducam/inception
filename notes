@@ -1,6 +1,8 @@
 *** Always check running containers and images when you start a new work session
 
-del mariadb/tools/my.cnf ? It didn't fick the mysqld.sock error
+you need to work on your db-config.sql file again and thw whole mariadb container
+
+del mariadb/tools/my.cnf ? It didn't fix the mysqld.sock error
 
 Makefile
 

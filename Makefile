@@ -1,10 +1,13 @@
 DIR		=	cd srcs
 
-all		:	
+all		:
 			$(DIR) && docker-compose up --build
 
-down	:	
+down	:
 			$(DIR) && docker-compose down
+
+exec	:
+			docker exec -it db-app /bin/bash
 
 clean	:	down
 			docker system prune -f
