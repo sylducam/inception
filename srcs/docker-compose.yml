@@ -4,12 +4,14 @@ services:
   db:
     container_name: db-app
     env_file: .env
-    # environment:
-      # MYSQL_USER: ${MYSQL_USER}
-      # MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     build:
       context: requirements/mariadb
       dockerfile: Dockerfile
+      args:
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        DB_NAME: ${DB_NAME}
     ports:
       - 3307:3307
     # configure the below healthcheck accordingly to what you need
