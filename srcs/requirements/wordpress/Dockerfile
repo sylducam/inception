@@ -25,10 +25,10 @@ RUN mv wordpress /var/www/html
 RUN mv conf/wp-config.php /var/www/html/wordpress
 
 
-RUN chmod 744 ${DB_TOOLS}/config.sh
-RUN ${DB_TOOLS}/config.sh
+RUN chmod 744 ${WP_TOOLS}/config.sh
+RUN ${WP_TOOLS}/config.sh
 
-EXPOSE 3307
+EXPOSE 80 443
 
 #PHPMYADMIN (REMAKE IT)
 # RUN wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz
@@ -36,7 +36,7 @@ EXPOSE 3307
 # RUN rm phpMyAdmin-latest-all-languages.tar.gz
 # RUN mv phpMyAdmin* /var/www/html/phpmyadmin
 
-LABEL description="MariaDB"
+LABEL description="wordpress"
 
 # -- rename the database
 # RUN mysql -u root -e "CREATE DATABASE IF NOT EXISTS wordpress; \
