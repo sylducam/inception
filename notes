@@ -1,5 +1,7 @@
 *** Always check running containers and images when you start a new work session
 
+conf files in conf folders
+
 change passwords, not blabla everywhere
 
 del mariadb/tools/my.cnf ? It didn't fix the mysqld.sock error

@@ -1,7 +1,8 @@
 FROM debian:buster
 
 ENV BASEDIR=/inception/wordpress
-ENV DB_TOOLS=${BASEDIR}/tools
+ENV WP_CONF=${BASEDIR}/conf
+ENV WP_TOOLS=${BASEDIR}/tools
 
 # need args below ?
 ARG MYSQL_USER
@@ -11,9 +12,18 @@ ARG DB_NAME
 
 WORKDIR ${BASEDIR}
 
-RUN apt-get install -y wget
+COPY conf ${WP_CONF}
+COPY tools ${WP_TOOLS}
 
-COPY tools ${DB_TOOLS}
+RUN mkdir /var/www
+RUN mkdir /var/www/html
+RUN chmod -R 755 /var/www/*
+RUN apt-get install -y wget
+RUN wget https://wordpress.org/latest.tar.gz
+RUN tar xf latest.tar.gz
+RUN mv wordpress /var/www/html
+RUN mv conf/wp-config.php /var/www/html/wordpress
+
 
 RUN chmod 744 ${DB_TOOLS}/config.sh
 RUN ${DB_TOOLS}/config.sh
