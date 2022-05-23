@@ -15,6 +15,8 @@ WORKDIR ${BASEDIR}
 COPY conf ${WP_CONF}
 COPY tools ${WP_TOOLS}
 
+RUN apt-get install -y php php-fpm php-mysqli
+
 RUN mkdir /var/www
 RUN mkdir /var/www/html
 RUN chmod -R 755 /var/www/*
@@ -23,8 +25,11 @@ RUN wget https://wordpress.org/wordpress-5.9.3.tar.gz
 RUN tar xf wordpress-5.9.3.tar.gz
 RUN mv wordpress /var/www/html
 RUN mv conf/wp-config.php /var/www/html/wordpress
+RUN sed -i "s|%%WORDPRESS_DB_USER%%|$USER_NAME|" ${WP_CONF}/wp-config.php
+RUN sed -i "s|%%WORDPRESS_DB_PSSWD%%|$USER_PASSWORD|" ${WP_CONF}/wp-config.php
 
-EXPOSE 80 443
+# why 9000 ?
+EXPOSE 9000
 
 #PHPMYADMIN (REMAKE IT)
 # RUN wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz
