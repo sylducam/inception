@@ -19,14 +19,10 @@ RUN mkdir /var/www
 RUN mkdir /var/www/html
 RUN chmod -R 755 /var/www/*
 RUN apt-get install -y wget
-RUN wget https://wordpress.org/latest.tar.gz
-RUN tar xf latest.tar.gz
+RUN wget https://wordpress.org/wordpress-5.9.3.tar.gz
+RUN tar xf wordpress-5.9.3.tar.gz
 RUN mv wordpress /var/www/html
 RUN mv conf/wp-config.php /var/www/html/wordpress
-
-
-RUN chmod 744 ${WP_TOOLS}/config.sh
-RUN ${WP_TOOLS}/config.sh
 
 EXPOSE 80 443
 
