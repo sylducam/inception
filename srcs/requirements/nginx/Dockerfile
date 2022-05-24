@@ -18,6 +18,15 @@ RUN apt-get install -y vim
 RUN apt-get install -y openssl
 RUN apt-get install -y nginx
 
+COPY conf ${NGINX_CONF}
+COPY tools ${NGINX_TOOLS}
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt -subj "/C=FR/ST=AURA/L=Lyon/O=42/OU=sylducam/CN=localhost/emailAddress=sylducam@student.42-lyon.fr"
+RUN mv ${NGINX_CONF}self-signed.conf /etc/nginx/snippets
+RUN mv ${NGINX_CONF}ssl-params.conf /etc/nginx/snippets
+# need following ?
+RUN mv ${NGINX_CONF}default /etc/nginx/sites-available/default
+RUN ln -s etc/nginx/sites-available/default etc/nginx/sites-enabled
+
 RUN mkdir -p /var/www/html
 RUN chmod -R 755 /var/www/*
 RUN apt-get install -y wget
