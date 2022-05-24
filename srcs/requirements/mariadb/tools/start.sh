@@ -13,8 +13,8 @@
 exec /usr/bin/mysqld_safe
 
 # mysql -u root -e "CREATE DATABASE IF NOT EXISTS wordpress;
-# # CREATE USER '$MYSQL_USER' IDENTIFIED BY '$MYSQL_PASSWORD' \
-# # GRANT ALL ON wordpress.* TO '$MYSQL_USER'@'%' \
+# # CREATE USERNAME '$USERNAME' IDENTIFIED BY '$USER_PASSWORD' \
+# # GRANT ALL ON wordpress.* TO '$USERNAME'@'%' \
 # # FLUSH PRIVILES;"
 
 # mysql -u root < db-config.sql

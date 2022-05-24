@@ -1,5 +1,9 @@
 *** Always check running containers and images when you start a new work session
 
+fix the ICIs comments
+
+rootblabla is wrongly replaced as MYSQL_ROOT_blabla in the db-config.sql, after launching config.sh
+
 conf files in conf folders
 
 change passwords, not blabla everywhere

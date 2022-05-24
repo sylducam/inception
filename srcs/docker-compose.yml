@@ -8,8 +8,8 @@ services:
       context: requirements/mariadb
       dockerfile: Dockerfile
       args:
-        MYSQL_USER: ${MYSQL_USER}
-        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        USERNAME: ${USERNAME}
+        USER_PASSWORD: ${USER_PASSWORD}
         MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
         DB_NAME: ${DB_NAME}
     ports:
@@ -28,12 +28,15 @@ services:
       # tail -F anything
 # 2 line above to del
 
-#  wordpress:
-#    build:
-#      context: requirements/wordpress
-#      dockerfile: Dockerfile
-#    networks:
-#      - inception
+  wordpress:
+    build:
+      context: requirements/wordpress
+      dockerfile: Dockerfile
+      args:
+        USERNAME: ${USERNAME}
+        USER_PASSWORD: ${USER_PASSWORD}
+    networks:
+      - inception
 
 #  nginx:
 #    build:
