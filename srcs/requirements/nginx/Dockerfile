@@ -21,11 +21,11 @@ RUN apt-get install -y nginx
 COPY conf ${NGINX_CONF}
 COPY tools ${NGINX_TOOLS}
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt -subj "/C=FR/ST=AURA/L=Lyon/O=42/OU=sylducam/CN=localhost/emailAddress=sylducam@student.42-lyon.fr"
-RUN mv ${NGINX_CONF}self-signed.conf /etc/nginx/snippets
-RUN mv ${NGINX_CONF}ssl-params.conf /etc/nginx/snippets
+RUN mv ${NGINX_CONF}/self-signed.conf /etc/nginx/snippets
+RUN mv ${NGINX_CONF}/ssl-params.conf /etc/nginx/snippets
 # need following ?
-RUN mv ${NGINX_CONF}default /etc/nginx/sites-available/default
-RUN ln -s etc/nginx/sites-available/default etc/nginx/sites-enabled
+RUN mv ${NGINX_CONF}/default /etc/nginx/sites-available/default
+# RUN ln -s etc/nginx/sites-available/default etc/nginx/sites-enabled
 
 RUN mkdir -p /var/www/html
 RUN chmod -R 755 /var/www/*
@@ -48,7 +48,7 @@ EXPOSE 80 443
 # RUN rm phpMyAdmin-latest-all-languages.tar.gz
 # RUN mv phpMyAdmin* /var/www/html/phpmyadmin
 
-LABEL description="wordpress"
+LABEL description="nginx"
 
 # -- rename the database
 # RUN mysql -u root -e "CREATE DATABASE IF NOT EXISTS wordpress; \
@@ -60,8 +60,8 @@ LABEL description="wordpress"
 # -- SHOW DATABASES;
 
 
-# CMD ["tail", "-f"]
-CMD ["bash", "tools/start.sh"]
+CMD ["tail", "-f"]
+# CMD ["bash", "tools/start.sh"]
 
 # hub.docker.com's way below keep on using it if you find it usefull, else, I am adding an
 # rough example of MariaDB Dockefile above

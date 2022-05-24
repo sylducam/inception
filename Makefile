@@ -6,8 +6,14 @@ all		:
 down	:
 			$(DIR) && docker-compose down
 
-exec	:
+execdb	:
+			docker exec -it db-app /bin/bash
+
+execwp	:
 			docker exec -it wp-app /bin/bash
+
+execn	:
+			docker exec -it nginx-app /bin/bash
 
 clean	:	down
 			docker system prune -f
@@ -20,4 +26,4 @@ fclean	:	clean
 			docker rmi -f $(docker images -a -q)
 			
 
-.PHONY	:	all down clean
+.PHONY	:	all execdb execwp execn down clean fclean
