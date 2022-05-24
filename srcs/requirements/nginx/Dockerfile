@@ -21,24 +21,11 @@ RUN apt-get install -y nginx
 COPY conf ${NGINX_CONF}
 COPY tools ${NGINX_TOOLS}
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt -subj "/C=FR/ST=AURA/L=Lyon/O=42/OU=sylducam/CN=localhost/emailAddress=sylducam@student.42-lyon.fr"
-RUN mv ${NGINX_CONF}/self-signed.conf /etc/nginx/snippets
-RUN mv ${NGINX_CONF}/ssl-params.conf /etc/nginx/snippets
+RUN cp ${NGINX_CONF}/self-signed.conf /etc/nginx/snippets
+RUN cp ${NGINX_CONF}/ssl-params.conf /etc/nginx/snippets
 # need following ?
-RUN mv ${NGINX_CONF}/default /etc/nginx/sites-available/default
+RUN cp ${NGINX_CONF}/default /etc/nginx/sites-available/default
 # RUN ln -s etc/nginx/sites-available/default etc/nginx/sites-enabled
-
-RUN mkdir -p /var/www/html
-RUN chmod -R 755 /var/www/*
-RUN apt-get install -y wget
-RUN wget https://wordpress.org/wordpress-5.9.3.tar.gz
-RUN tar xf wordpress-5.9.3.tar.gz
-RUN mv wordpress /var/www/html
-
-COPY conf ${WP_CONF}
-COPY tools ${WP_TOOLS}
-RUN mv conf/wp-config.php /var/www/html/wordpress
-RUN sed -i "s|%%WORDPRESS_DB_USER%%|$USER_NAME|" /var/www/html/wordpress/wp-config.php
-RUN sed -i "s|%%WORDPRESS_DB_PSSWD%%|$USER_PASSWORD|" /var/www/html/wordpress/wp-config.php
 
 EXPOSE 80 443
 
@@ -60,8 +47,8 @@ LABEL description="nginx"
 # -- SHOW DATABASES;
 
 
-CMD ["tail", "-f"]
-# CMD ["bash", "tools/start.sh"]
+# CMD ["tail", "-f"]
+CMD ["bash", "tools/start.sh"]
 
 # hub.docker.com's way below keep on using it if you find it usefull, else, I am adding an
 # rough example of MariaDB Dockefile above
