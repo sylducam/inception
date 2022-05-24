@@ -15,7 +15,9 @@ WORKDIR ${BASEDIR}
 RUN apt-get update && apt-get -y upgrade
 # del line below
 RUN apt-get install -y vim
-RUN apt-get install -y php php-fpm php-mysqli
+RUN apt-get install -y php
+RUN apt-get install -y php-fpm
+RUN apt-get install -y php-mysqli
 
 RUN mkdir -p /var/www/html
 RUN chmod -R 755 /var/www/*
@@ -51,7 +53,7 @@ LABEL description="wordpress"
 # -- SHOW DATABASES;
 
 
-# CMD ["tail", "-f"]
+CMD ["tail", "-f"]
 # CMD ["bash", "tools/start.sh"]
 
 # hub.docker.com's way below keep on using it if you find it usefull, else, I am adding an

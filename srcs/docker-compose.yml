@@ -1,19 +1,19 @@
 version: "3.9"
 
 services:
-  db:
-    container_name: db-app
-    env_file: .env
-    build:
-      context: requirements/mariadb
-      dockerfile: Dockerfile
-      args:
-        USER_NAME: ${USER_NAME}
-        USER_PASSWORD: ${USER_PASSWORD}
-        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-        DB_NAME: ${DB_NAME}
-    ports:
-      - 3307:3307
+#   db:
+#     container_name: db-app
+#     env_file: .env
+#     build:
+#       context: requirements/mariadb
+#       dockerfile: Dockerfile
+#       args:
+#         USER_NAME: ${USER_NAME}
+#         USER_PASSWORD: ${USER_PASSWORD}
+#         MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+#         DB_NAME: ${DB_NAME}
+#     ports:
+#       - 3307:3307
     # configure the below healthcheck accordingly to what you need
     # healthcheck:
       # test: ["CMD", "curl", "-f", "http://localhost"]
@@ -22,8 +22,8 @@ services:
       # retries: 3
       # start_period: 40s
     # restart: always
-    networks:                                                       # ++
-      - inception                                                   # ++
+    # networks:                                                       # ++
+    #   - inception                                                   # ++
     # command:
       # tail -F anything
 # 2 line above to del
@@ -40,10 +40,13 @@ services:
     networks:
       - inception
 
-#  nginx:
-#    build:
-#      context: requirements/nginx
-#      dockerfile: Dockerfile
+  nginx:
+    container_name: nginx-app
+    env_file: .env # needed ?
+    build:
+      context: requirements/nginx
+      dockerfile: Dockerfile
+      
 #    networks:
 #      - inception
 
