@@ -18,6 +18,7 @@ RUN apt-get install -y vim
 RUN apt-get install -y php
 RUN apt-get install -y php-fpm
 RUN apt-get install -y php-mysqli
+RUN mkdir /run/php
 
 RUN mkdir -p /var/www/html
 RUN chmod -R 755 /var/www/*
@@ -53,8 +54,8 @@ LABEL description="wordpress"
 # -- SHOW DATABASES;
 
 
-CMD ["tail", "-f"]
-# CMD ["bash", "tools/start.sh"]
+# CMD ["tail", "-f"]
+CMD ["bash", "tools/start.sh"]
 
 # hub.docker.com's way below keep on using it if you find it usefull, else, I am adding an
 # rough example of MariaDB Dockefile above
