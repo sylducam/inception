@@ -6,7 +6,7 @@ FROM debian:buster
 ENV BASEDIR=/inception/mariadb
 ENV DB_TOOLS=${BASEDIR}/tools
 
-ARG USERNAME
+ARG USER_NAME
 ARG USER_PASSWORD
 ARG MYSQL_ROOT_PASSWORD
 ARG DB_NAME
@@ -39,8 +39,8 @@ LABEL description="MariaDB"
 
 # -- rename the database
 # RUN mysql -u root -e "CREATE DATABASE IF NOT EXISTS wordpress; \
-# CREATE USERNAME '$USERNAME' IDENTIFIED BY '$USER_PASSWORD'; \
-# GRANT ALL ON wordpress.* TO '$USERNAME'@'%'; \
+# CREATE USER_NAME '$USER_NAME' IDENTIFIED BY '$USER_PASSWORD'; \
+# GRANT ALL ON wordpress.* TO '$USER_NAME'@'%'; \
 # FLUSH PRIVILEGES;"
 # -- what's the use of the next line ?
 # -- UPDATE mysql.user SET plugin = '' WHERE user = 'sylducam' AND host = 'localhost';
@@ -52,5 +52,5 @@ CMD ["bash", "tools/start.sh"]
 
 # hub.docker.com's way below keep on using it if you find it usefull, else, I am adding an
 # rough example of MariaDB Dockefile above
-# docker run --detach --name some-mariadb --env MARIADB_USERNAME=sylducam --env MARIADB_USER_PASSWORD=blabla --env MARIADB_ROOT_PASSWORD=blabla  mariadb:latest
+# docker run --detach --name some-mariadb --env MARIADB_USER_NAME=sylducam --env MARIADB_USER_PASSWORD=blabla --env MARIADB_ROOT_PASSWORD=blabla  mariadb:latest
 # !! latest forbiden

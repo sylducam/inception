@@ -1,5 +1,7 @@
 *** Always check running containers and images when you start a new work session
 
+www.conf file that clsaad has for wordpress
+
 fix the ICIs comments
 
 rootblabla is wrongly replaced as MYSQL_ROOT_blabla in the db-config.sql, after launching config.sh

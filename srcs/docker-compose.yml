@@ -8,7 +8,7 @@ services:
       context: requirements/mariadb
       dockerfile: Dockerfile
       args:
-        USERNAME: ${USERNAME}
+        USER_NAME: ${USER_NAME}
         USER_PASSWORD: ${USER_PASSWORD}
         MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
         DB_NAME: ${DB_NAME}
@@ -22,18 +22,20 @@ services:
       # retries: 3
       # start_period: 40s
     # restart: always
-    networks:
-      - inception
+    networks:                                                       # ++
+      - inception                                                   # ++
     # command:
       # tail -F anything
 # 2 line above to del
 
   wordpress:
+    container_name: wp-app
+    env_file: .env
     build:
       context: requirements/wordpress
       dockerfile: Dockerfile
       args:
-        USERNAME: ${USERNAME}
+        USER_NAME: ${USER_NAME}
         USER_PASSWORD: ${USER_PASSWORD}
     networks:
       - inception

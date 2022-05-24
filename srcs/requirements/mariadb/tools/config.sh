@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sed -i "s/DB_NAME/$DB_NAME/g"				"$DB_TOOLS/db-config.sql"
-sed -i "s/USERNAME/$USERNAME/g"				"$DB_TOOLS/db-config.sql"
+sed -i "s/USER_NAME/$USER_NAME/g"				"$DB_TOOLS/db-config.sql"
 sed -i "s/USER_PASSWORD/$USER_PASSWORD/g"				"$DB_TOOLS/db-config.sql"
 sed -i "s/MYSQL_ROOT_PASSWORD/$MYSQL_ROOT_PASSWORD/g"	"$DB_TOOLS/db-config.sql"
 cat $DB_TOOLS/db-config.sql 

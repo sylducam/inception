@@ -7,7 +7,7 @@ down	:
 			$(DIR) && docker-compose down
 
 exec	:
-			docker exec -it db-app /bin/bash
+			docker exec -it wp-app /bin/bash
 
 clean	:	down
 			docker system prune -f
