@@ -48,7 +48,8 @@ LABEL description="nginx"
 
 
 # CMD ["tail", "-f"]
-CMD ["bash", "tools/start.sh"]
+CMD ["nginx", "-g", "daemon off;"]
+# CMD ["bash", "tools/start.sh"]
 
 # hub.docker.com's way below keep on using it if you find it usefull, else, I am adding an
 # rough example of MariaDB Dockefile above

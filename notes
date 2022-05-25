@@ -1,5 +1,7 @@
 *** Always check running containers and images when you start a new work session
 
+remove nginx's start.sh ?
+
 www.conf file that clsaad has for wordpress
 
 fix the ICIs comments
