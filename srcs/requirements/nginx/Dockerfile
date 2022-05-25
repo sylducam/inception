@@ -20,12 +20,18 @@ RUN apt-get install -y nginx
 
 COPY conf ${NGINX_CONF}
 COPY tools ${NGINX_TOOLS}
+
+RUN	 mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
+# rewrite the line below the way you use to copy or move files you copied in the container, from
+# your srcs, using the conf and tools folders
+# COPY ./data/nginx.conf /etc/nginx/nginx.conf
+
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt -subj "/C=FR/ST=AURA/L=Lyon/O=42/OU=sylducam/CN=localhost/emailAddress=sylducam@student.42-lyon.fr"
 RUN cp ${NGINX_CONF}/self-signed.conf /etc/nginx/snippets
 RUN cp ${NGINX_CONF}/ssl-params.conf /etc/nginx/snippets
 # need following ?
 RUN cp ${NGINX_CONF}/default /etc/nginx/sites-available/default
-# RUN ln -s etc/nginx/sites-available/default etc/nginx/sites-enabled
+# RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled
 
 EXPOSE 80 443
 
@@ -47,8 +53,8 @@ LABEL description="nginx"
 # -- SHOW DATABASES;
 
 
-# CMD ["tail", "-f"]
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["tail", "-f"]
+# CMD ["nginx", "-g", "daemon off;"]
 # CMD ["bash", "tools/start.sh"]
 
 # hub.docker.com's way below keep on using it if you find it usefull, else, I am adding an
