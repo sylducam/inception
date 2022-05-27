@@ -50,10 +50,10 @@ services:
 # networks:
 #   - inception
 
-# volumes:
-#   wordpress-db:
+volumes:
+  wordpress-db:
 
-#   wordpress-files:
+  wordpress-files:
 
 # networks: 
 #   inception:
