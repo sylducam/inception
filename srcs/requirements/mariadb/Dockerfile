@@ -27,8 +27,8 @@ COPY tools ${DB_TOOLS}
 RUN chmod 744 ${DB_TOOLS}/config.sh
 RUN ${DB_TOOLS}/config.sh
 
-# exposed in yml, uncomment this one if it doesn't work
-# EXPOSE 3307
+# expose effective in yml, here only for readability
+EXPOSE 3307
 
 #PHPMYADMIN (REMAKE IT)
 # RUN wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz

@@ -79,7 +79,7 @@ Vos containers devront redémarrer en cas de crash.
 
 latest forbiden
 
-ports 80 and 443 for http and https
+ports 443 for https. 80 (http) is not wanted in the subject
 
 change region for my debian bullseye ? (fav pour aller plus loin)
 
