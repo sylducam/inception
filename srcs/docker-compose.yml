@@ -12,6 +12,8 @@ services:
         USER_PASSWORD: ${USER_PASSWORD}
         MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
         DB_NAME: ${DB_NAME}
+    volumes:
+      wordpress-db:
     ports:
       - 3307:3307
     # configure the below healthcheck accordingly to what you need
