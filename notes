@@ -1,5 +1,9 @@
 *** Always check running containers and images when you start a new work session
 
+ports need to be opened (aka exposed) in the yaml ONLY 
+
+see if you add the rest of self-signed.conf lines into nginx.conf
+
 remove nginx's start.sh ?
 
 www.conf file that clsaad has for wordpress
