@@ -6,6 +6,8 @@ see if you add the rest of self-signed.conf lines into nginx.conf
 
 remove nginx's start.sh ?
 
+virer ssl-params.conf ?
+
 www.conf file that clsaad has for wordpress
 
 fix the ICIs comments

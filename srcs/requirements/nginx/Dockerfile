@@ -19,8 +19,8 @@ RUN apt-get install -y nginx
 
 COPY conf ${NGINX_CONF}
 
-RUN	mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
-RUN mv ${NGINX_CONF}/nginx.conf /etc/nginx/nginx.conf
+RUN mkdir -p /etc/nginx/nginx.d 
+RUN cp ${NGINX_CONF}/nginx.conf /etc/nginx/nginx.d/nginx.conf
 # rewrite the line below the way you use to copy or move files you copied in the container, from
 # your srcs, using the conf and tools folders
 # COPY ./data/nginx.conf /etc/nginx/nginx.conf
@@ -28,8 +28,9 @@ RUN mv ${NGINX_CONF}/nginx.conf /etc/nginx/nginx.conf
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout \
 /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt -subj \
 "/C=FR/ST=AURA/L=Lyon/O=42/OU=sylducam/CN=localhost/emailAddress=sylducam@student.42-lyon.fr"
+# RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
 # line below is to be able to access nginx logs in the volume but I still don't know how to do it
-RUN cp 
+# RUN cp 
 # RUN cp ${NGINX_CONF}/ssl-params.conf /etc/nginx/snippets
 # need following ?
 # RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
