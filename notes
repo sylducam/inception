@@ -1,5 +1,7 @@
 *** Always check running containers and images when you start a new work session
 
+see antepenultieme git log
+
 ports need to be opened (aka exposed) in the yaml ONLY 
 
 see if you add the rest of self-signed.conf lines into nginx.conf
