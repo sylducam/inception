@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   db:
-    container_name: db-app
+    container_name: mariadb
     env_file: .env
     build:
       context: requirements/mariadb
@@ -31,7 +31,7 @@ services:
 # 2 line above to del
 
   wordpress:
-    container_name: wp-app
+    container_name: wordpress
     env_file: .env
     build:
       context: requirements/wordpress
@@ -43,7 +43,7 @@ services:
       # - inception
 
   nginx:
-    container_name: nginx-app
+    container_name: nginx
     env_file: .env # needed ?
     build:
       context: requirements/nginx

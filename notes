@@ -1,6 +1,6 @@
 *** Always check running containers and images when you start a new work session
 
-see antepenultieme git log
+site accessible via http AND https
 
 ports need to be opened (aka exposed) in the yaml ONLY 
 

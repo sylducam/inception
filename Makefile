@@ -7,13 +7,13 @@ down	:
 			$(DIR) && docker-compose down
 
 execdb	:
-			docker exec -it db-app /bin/bash
+			docker exec -it mariadb /bin/bash
 
 execwp	:
-			docker exec -it wp-app /bin/bash
+			docker exec -it wordpress /bin/bash
 
 execn	:
-			docker exec -it nginx-app /bin/bash
+			docker exec -it nginx /bin/bash
 
 clean	:	down
 			docker system prune -f
