@@ -1,7 +1,7 @@
 version: "3.9"
 
 services:
-  db:
+  database:
     container_name: mariadb
     env_file: .env
     build:
@@ -12,8 +12,8 @@ services:
         USER_PASSWORD: ${USER_PASSWORD}
         MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
         DB_NAME: ${DB_NAME}
-    # volumes:
-      # wordpress-db:
+    volumes:
+      - wordpress-files:/home/sylducam/data/wordpress_database
     ports:
       - 3307:3307
     # configure the below healthcheck accordingly to what you need
@@ -24,13 +24,27 @@ services:
       # retries: 3
       # start_period: 40s
     # restart: always
-    # networks:                                                       # ++
-      # - inception                                                   # ++
+    networks:                                                       # ++
+      - inception                                                   # ++
     # command:
       # tail -F anything
 # 2 line above to del
 
-  wordpress:
+  server:
+    container_name: nginx
+    env_file: .env # needed ?
+    build:
+      context: requirements/nginx
+      dockerfile: Dockerfile
+    ports:
+      - 443:443
+      - 9000:9000
+    volumes:
+      - wordpress-files:/home/sylducam/data/wordpress_files
+    networks:
+      - inception
+
+  site:
     container_name: wordpress
     env_file: .env
     build:
@@ -39,25 +53,26 @@ services:
       args:
         USER_NAME: ${USER_NAME}
         USER_PASSWORD: ${USER_PASSWORD}
-    # networks:
-      # - inception
-
-  nginx:
-    container_name: nginx
-    env_file: .env # needed ?
-    build:
-      context: requirements/nginx
-      dockerfile: Dockerfile
+    volumes:
+      - wordpress-files:/home/sylducam/data/wordpress_files
+    networks:
+      - inception
       
-# networks:
-#   - inception
+volumes:
+  wordpress-database:
+    driver_opts:
+      type: none
+      o: bind
+      device: "/home/sylducam/data/wordpress_database"
 
-# volumes:
-  # wordpress-db:
+  wordpress-files:
+    driver_opts:
+      type: none
+      o: bind
+      device: "/home/sylducam/data/wordpress_files"
 
-  # wordpress-files:
+networks:
+  inception:
 
-# networks: 
-#   inception:
 
 # each env variable you need need to be specified in each service

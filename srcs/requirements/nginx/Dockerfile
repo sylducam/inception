@@ -1,6 +1,6 @@
 FROM debian:buster
 
-ENV BASEDIR=/inception/nginx
+ENV BASEDIR=/home/sylducam/nginx_container
 ENV NGINX_CONF=${BASEDIR}/conf
 
 # need args below ?

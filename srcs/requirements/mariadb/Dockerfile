@@ -3,7 +3,7 @@ FROM debian:buster
 # keep both server and client ? one of them ?
 # maybe install apt-utils via docker-compose or in each Dockerfile
 # check if you need all of the below
-ENV BASEDIR=/inception/mariadb
+ENV BASEDIR=/home/sylducam/mariadb_container
 ENV DB_TOOLS=${BASEDIR}/tools
 
 ARG USER_NAME

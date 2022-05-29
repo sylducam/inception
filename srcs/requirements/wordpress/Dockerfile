@@ -1,6 +1,6 @@
 FROM debian:buster
 
-ENV BASEDIR=/inception/wordpress
+ENV BASEDIR=/home/sylducam/mariadb_container
 ENV WP_CONF=${BASEDIR}/conf
 ENV WP_TOOLS=${BASEDIR}/tools
 
