@@ -1,5 +1,8 @@
 FROM debian:buster
 
+# expose effective in yml, here only for readability
+EXPOSE 443
+
 ENV BASEDIR=/home/sylducam/nginx_container
 ENV NGINX_CONF=${BASEDIR}/conf
 
@@ -20,15 +23,6 @@ RUN apt-get install -y nginx
 
 COPY conf ${NGINX_CONF}
 
-RUN mkdir -p /etc/nginx/nginx.d 
-RUN cp ${NGINX_CONF}/nginx.conf /etc/nginx/nginx.d/nginx.conf
-# rewrite the line below the way you use to copy or move files you copied in the container, from
-# your srcs, using the conf and tools folders
-# COPY ./data/nginx.conf /etc/nginx/nginx.conf
-
-RUN chown -R www-data:www-data /var/www/html
-RUN chmod 755 /var/www/html/
-
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout \
 /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt -subj \
 "/C=FR/ST=AURA/L=Lyon/O=42/OU=sylducam/CN=localhost/emailAddress=sylducam@student.42-lyon.fr"
@@ -39,8 +33,15 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout \
 # need following ?
 # RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 
-# expose effective in yml, here only for readability
-EXPOSE 443
+RUN cp ${NGINX_CONF}/default /etc/nginx/sites-enabled
+RUN mkdir -p /etc/nginx/nginx.d 
+# RUN cp ${NGINX_CONF}/nginx.conf /etc/nginx/nginx.d/nginx.conf
+# rewrite the line below the way you use to copy or move files you copied in the container, from
+# your srcs, using the conf and tools folders
+# COPY ./data/nginx.conf /etc/nginx/nginx.conf
+
+RUN chown -R www-data:www-data /var/www/html
+RUN chmod 755 /var/www/html/
 
 #PHPMYADMIN (REMAKE IT)
 # RUN wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz
