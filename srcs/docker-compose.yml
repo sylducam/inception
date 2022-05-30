@@ -72,7 +72,7 @@ volumes:
       device: "/home/sylducam/data/wordpress_files"
 
 networks:
-  inception:
+  inception: {}
 
 
 # each env variable you need need to be specified in each service

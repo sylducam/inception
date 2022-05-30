@@ -5,7 +5,7 @@
 
     # service mysql start
     
-exec mysqladmin -u root -p "$MYQSL_ROOT_PASSWORD"
+# exec mysqladmin -u root -p "$MYQSL_ROOT_PASSWORD"
 
     # service mysql stop
 
