@@ -1,21 +1,17 @@
 #!/bin/bash
 
-# under which condition sould I execute or not execute this script ?
-# if []
-	# then
-# fi
-# while :
-# do
-# 	echo "Do something; hit [CTRL+C] to stop!"
-# done
-#MYSQL
-# add if condition above but get it right
-exec /usr/bin/mysqld_safe
+# if [[ ! -d /var/lib/mysql/$DB_NAME ]]; then
+    # mysql_install_db --ldata=/var/lib/mysql --user=mysql
 
-# mysql -u root -e "CREATE DATABASE IF NOT EXISTS wordpress;
-# # CREATE USER_NAME '$USER_NAME' IDENTIFIED BY '$USER_PASSWORD' \
-# # GRANT ALL ON wordpress.* TO '$USER_NAME'@'%' \
-# # FLUSH PRIVILES;"
+    # service mysql start
+    
+exec mysqladmin -u root -p "$MYQSL_ROOT_PASSWORD"
+
+    # service mysql stop
+
+# fi
+
+exec /usr/bin/mysqld_safe
 
 # mysql -u root < db-config.sql
 

@@ -5,6 +5,7 @@ FROM debian:buster
 # check if you need all of the below
 ENV BASEDIR=/home/sylducam/mariadb_container
 ENV DB_TOOLS=${BASEDIR}/tools
+ENV DB_CONF=${BASEDIR}/conf
 
 ARG USER_NAME
 ARG USER_PASSWORD
@@ -25,8 +26,9 @@ RUN apt-get install -y mariadb-client
 RUN apt-get install -y coreutils
 
 COPY tools ${DB_TOOLS}
-RUN chmod 744 ${DB_TOOLS}/config.sh
-RUN ${DB_TOOLS}/config.sh
+COPY conf ${DB_CONF}
+RUN chmod 744 ${DB_CONF}/config.sh
+RUN ${DB_CONF}/config.sh
 
 # expose effective in yml, here only for readability
 EXPOSE 3307
