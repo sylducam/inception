@@ -1,6 +1,6 @@
 FROM debian:buster
 
-ENV BASEDIR=/home/sylducam/mariadb_container
+ENV BASEDIR=/home/sylducam/wordpress_container
 ENV WP_CONF=${BASEDIR}/conf
 ENV WP_TOOLS=${BASEDIR}/tools
 
@@ -15,6 +15,7 @@ WORKDIR ${BASEDIR}
 RUN apt-get update && apt-get -y upgrade
 # del line below
 RUN apt-get install -y vim
+RUN apt-get install -y curl
 RUN apt-get install -y php
 RUN apt-get install -y php-fpm
 RUN apt-get install -y php-mysqli

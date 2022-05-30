@@ -14,6 +14,7 @@ WORKDIR ${BASEDIR}
 RUN apt-get update && apt-get -y upgrade
 # del line below
 RUN apt-get install -y vim
+RUN apt-get install -y curl
 RUN apt-get install -y openssl
 RUN apt-get install -y nginx
 
