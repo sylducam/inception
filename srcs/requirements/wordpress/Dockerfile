@@ -24,12 +24,18 @@ RUN apt-get install -y php-fpm
 RUN apt-get install -y php-mysqli
 RUN mkdir /run/php
 
+# wordpress installation
 RUN mkdir -p /var/www/html
 RUN chmod -R 755 /var/www/*
 RUN apt-get install -y wget
 RUN wget https://wordpress.org/wordpress-5.9.3.tar.gz
 RUN tar xf wordpress-5.9.3.tar.gz
 RUN mv wordpress /var/www/html
+
+# wp-cli installation
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN chmod +x wp-cli.phar
+RUN mv wp-cli.phar /usr/local/bin/wp
 
 COPY conf ${WP_CONF}
 COPY tools ${WP_TOOLS}
