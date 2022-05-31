@@ -53,16 +53,6 @@ RUN chmod 755 /var/www/*
 
 LABEL description="nginx"
 
-# -- rename the database
-# RUN mysql -u root -e "CREATE DATABASE IF NOT EXISTS wordpress; \
-# CREATE USER_NAME '$USER_NAME' IDENTIFIED BY '$USER_PASSWORD'; \
-# GRANT ALL ON wordpress.* TO '$USER_NAME'@'%'; \
-# FLUSH PRIVILEGES;"
-# -- what's the use of the next line ?
-# -- UPDATE mysql.user SET plugin = '' WHERE user = 'sylducam' AND host = 'localhost';
-# -- SHOW DATABASES;
-
-
 # CMD ["tail", "-f"]
 CMD ["nginx", "-g", "daemon off;"]
 

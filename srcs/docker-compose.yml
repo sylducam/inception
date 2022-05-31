@@ -30,6 +30,8 @@ services:
 
   server:
     container_name: nginx
+    depends_on:
+      - site
     env_file: .env # needed ?
     build:
       context: requirements/nginx
@@ -51,6 +53,7 @@ services:
       args:
         USER_NAME: ${USER_NAME}
         USER_PASSWORD: ${USER_PASSWORD}
+        DB_NAME: ${DB_NAME}
     volumes:
       - wordpress-files:/var/www/html/wordpress
     networks:

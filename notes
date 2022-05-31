@@ -1,5 +1,7 @@
 *** Always check running containers and images when you start a new work session
 
+put sylducam.42.fr in env
+
 error when I make fclean
 
 site accessible via http AND https
