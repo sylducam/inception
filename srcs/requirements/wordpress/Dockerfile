@@ -1,5 +1,8 @@
 FROM debian:buster
 
+# expose effective in yml, here only for readability
+EXPOSE 9000
+
 ENV BASEDIR=/home/sylducam/wordpress_container
 ENV WP_CONF=${BASEDIR}/conf
 ENV WP_TOOLS=${BASEDIR}/tools
@@ -33,9 +36,6 @@ COPY tools ${WP_TOOLS}
 RUN mv conf/wp-config.php /var/www/html/wordpress
 RUN sed -i "s|%%WORDPRESS_DB_USER%%|$USER_NAME|" /var/www/html/wordpress/wp-config.php
 RUN sed -i "s|%%WORDPRESS_DB_PSSWD%%|$USER_PASSWORD|" /var/www/html/wordpress/wp-config.php
-
-# expose effective in yml, here only for readability
-EXPOSE 9000
 
 #PHPMYADMIN (REMAKE IT)
 # RUN wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz

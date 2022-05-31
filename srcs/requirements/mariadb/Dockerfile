@@ -1,5 +1,8 @@
 FROM debian:buster
 
+# expose effective in yml, here only for readability
+EXPOSE 3307
+
 # keep both server and client ? one of them ?
 # maybe install apt-utils via docker-compose or in each Dockerfile
 # check if you need all of the below
@@ -29,9 +32,6 @@ COPY tools ${DB_TOOLS}
 COPY conf ${DB_CONF}
 RUN chmod 744 ${DB_CONF}/config.sh
 RUN ${DB_CONF}/config.sh
-
-# expose effective in yml, here only for readability
-EXPOSE 3307
 
 #PHPMYADMIN (REMAKE IT)
 # RUN wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz
