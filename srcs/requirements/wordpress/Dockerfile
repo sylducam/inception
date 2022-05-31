@@ -36,29 +36,9 @@ COPY tools ${WP_TOOLS}
 RUN mv conf/wp-config.php /var/www/html/wordpress
 RUN sed -i "s|%%WORDPRESS_DB_USER%%|$USER_NAME|" /var/www/html/wordpress/wp-config.php
 RUN sed -i "s|%%WORDPRESS_DB_PSSWD%%|$USER_PASSWORD|" /var/www/html/wordpress/wp-config.php
-
-#PHPMYADMIN (REMAKE IT)
-# RUN wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz
-# RUN tar xf phpMyAdmin-latest-all-languages.tar.gz
-# RUN rm phpMyAdmin-latest-all-languages.tar.gz
-# RUN mv phpMyAdmin* /var/www/html/phpmyadmin
+RUN sed -i "s|listen =.*|listen = 0.0.0.0:9000|" /etc/php/7.3/fpm/pool.d/www.conf
 
 LABEL description="wordpress"
 
-# -- rename the database
-# RUN mysql -u root -e "CREATE DATABASE IF NOT EXISTS wordpress; \
-# CREATE USER_NAME '$USER_NAME' IDENTIFIED BY '$USER_PASSWORD'; \
-# GRANT ALL ON wordpress.* TO '$USER_NAME'@'%'; \
-# FLUSH PRIVILEGES;"
-# -- what's the use of the next line ?
-# -- UPDATE mysql.user SET plugin = '' WHERE user = 'sylducam' AND host = 'localhost';
-# -- SHOW DATABASES;
-
-
 # CMD ["tail", "-f"]
 CMD ["bash", "tools/start.sh"]
-
-# hub.docker.com's way below keep on using it if you find it usefull, else, I am adding an
-# rough example of MariaDB Dockefile above
-# docker run --detach --name some-mariadb --env MARIADB_USER_NAME=sylducam --env MARIADB_USER_PASSWORD=blabla --env MARIADB_ROOT_PASSWORD=blabla  mariadb:latest
-# !! latest forbiden

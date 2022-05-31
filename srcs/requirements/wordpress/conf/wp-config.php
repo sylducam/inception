@@ -29,7 +29,7 @@ define( 'DB_USER', '%%WORDPRESS_DB_USER%%' ); // ICI
 define( 'DB_PASSWORD', '%%WORDPRESS_DB_PSSWD%%' ); // ICI
 
 /** MySQL hostname */
-define( 'DB_HOST', 'mariadb' );
+define( 'DB_HOST', 'mariadb:3306' );
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );

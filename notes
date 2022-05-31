@@ -1,5 +1,7 @@
 *** Always check running containers and images when you start a new work session
 
+error when I make fclean
+
 site accessible via http AND https
 
 ports need to be opened (aka exposed) in the yaml ONLY 

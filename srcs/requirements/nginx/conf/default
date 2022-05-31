@@ -1,15 +1,5 @@
 server
 {
-	listen 80;
-	listen [::]:80;
-	
-	server_name sylducam.42.fr;
-	
-	return 301 https://$server_name$request_uri;
-}
-
-server
-{
 	listen 443 ssl;
 	listen [::]:443 ssl;
 		
@@ -17,8 +7,13 @@ server
 	ssl_certificate /etc/ssl/certs/nginx-selfsigned.crt;
 	ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
 	
-	root /var/www/html;
+	access_log /home/sylducam/data/log/nginx/access.log;
+	error_log /home/sylducam/data/log/nginx/error.log;
 	
+	root /var/www/html/wordpress;
+
+	autoindex on;
+
 	index index.html index.php;	
 	
 	server_name sylducam.42.fr;

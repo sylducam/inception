@@ -14,8 +14,6 @@ services:
         DB_NAME: ${DB_NAME}
     volumes:
       - wordpress-files:/home/sylducam/data/wordpress_database
-    ports:
-      - 3307:3307
     # configure the below healthcheck accordingly to what you need
     # healthcheck:
       # test: ["CMD", "curl", "-f", "http://localhost"]
@@ -38,9 +36,9 @@ services:
       dockerfile: Dockerfile
     ports:
       - 443:443
-      - 9000:9000
     volumes:
-      - wordpress-files:/home/sylducam/data/wordpress_files
+      - nginx-logs:/home/sylducam/data/log/nginx
+      - wordpress-files:/var/www/html/wordpress
     networks:
       - inception
 
@@ -54,7 +52,7 @@ services:
         USER_NAME: ${USER_NAME}
         USER_PASSWORD: ${USER_PASSWORD}
     volumes:
-      - wordpress-files:/home/sylducam/data/wordpress_files
+      - wordpress-files:/var/www/html/wordpress
     networks:
       - inception
       
@@ -70,6 +68,12 @@ volumes:
       type: none
       o: bind
       device: "/home/sylducam/data/wordpress_files"
+
+  nginx-logs:
+    driver_opts:
+      type: none
+      o: bind
+      device: "/home/sylducam/data/log/nginx"
 
 networks:
   inception: {}

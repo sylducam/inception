@@ -34,14 +34,16 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout \
 # RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 
 RUN cp ${NGINX_CONF}/default /etc/nginx/sites-enabled
-RUN mkdir -p /etc/nginx/nginx.d 
+RUN mkdir -p /etc/nginx/nginx.d	
+# RUN touch /home/sylducam/data/log/nginx/access.log
+# RUN touch /home/sylducam/data/log/nginx/error.log
 # RUN cp ${NGINX_CONF}/nginx.conf /etc/nginx/nginx.d/nginx.conf
 # rewrite the line below the way you use to copy or move files you copied in the container, from
 # your srcs, using the conf and tools folders
 # COPY ./data/nginx.conf /etc/nginx/nginx.conf
 
 RUN chown -R www-data:www-data /var/www/html
-RUN chmod 755 /var/www/html/
+RUN chmod 755 /var/www/*
 
 #PHPMYADMIN (REMAKE IT)
 # RUN wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz

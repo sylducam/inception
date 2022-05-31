@@ -1,8 +1,5 @@
 FROM debian:buster
 
-# expose effective in yml, here only for readability
-EXPOSE 3307
-
 # keep both server and client ? one of them ?
 # maybe install apt-utils via docker-compose or in each Dockerfile
 # check if you need all of the below
@@ -32,6 +29,7 @@ COPY tools ${DB_TOOLS}
 COPY conf ${DB_CONF}
 RUN chmod 744 ${DB_CONF}/config.sh
 RUN ${DB_CONF}/config.sh
+RUN sed -i "s|127.0.0.1|0.0.0.0|" /etc/mysql/mariadb.conf.d/50-server.cnf
 
 #PHPMYADMIN (REMAKE IT)
 # RUN wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz

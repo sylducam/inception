@@ -1,6 +1,9 @@
 DIR		=	cd srcs
 
 all		:
+			mkdir -p /home/sylducam/data/log/nginx
+			mkdir -p /home/sylducam/data/wordpress_database
+			mkdir -p /home/sylducam/data/wordpress_files
 			$(DIR) && docker-compose up --build
 
 down	:
@@ -17,13 +20,16 @@ execn	:
 
 clean	:	down
 			docker system prune -f
-			docker volume rm $$(docker volume ls -q)
-			docker network rm $$(docker network ls -q)
+			docker volume rm $$(docker volume ls -q) || true
+			sudo rm -rf /home/sylducam/data/log/nginx/*
+			sudo rm -rf /home/sylducam/data/wordpress_database/*
+			sudo rm -rf /home/sylducam/data/wordpress_files/*
+			docker network rm inception || true
 
 fclean	:	clean
-			docker stop $(docker ps -a -q)
-			docker rm $(docker ps -a -q)
-			docker rmi -f $(docker images -a -q)
-			
+			docker stop $(docker ps -a -q) || true
+			docker rm $(docker ps -a -q) || true
+			docker rmi -f $(docker images -a -q) || true
+
 
 .PHONY	:	all execdb execwp execn down clean fclean
