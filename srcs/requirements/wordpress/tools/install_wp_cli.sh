@@ -8,6 +8,7 @@
 # echo ICI2
 # exec mv wp-cli.phar /usr/local/bin/wp
 echo ICI3
+sleep 3
 exec wp core install --url=sylducam.42.fr --title="$DB_NAME" --admin_user="$USER_NAME" \
 --admin_password="$USER_PASSWORD" --admin_email=sylducam@gmail.com --allow-root \
 --path=/var/www/html/wordpress

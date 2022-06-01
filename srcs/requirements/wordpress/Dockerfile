@@ -45,7 +45,7 @@ RUN sed -i "s|%%DB_NAME%%|$DB_NAME|" /var/www/html/wordpress/wp-config.php
 RUN sed -i "s|%%WORDPRESS_DB_USER%%|$USER_NAME|" /var/www/html/wordpress/wp-config.php
 RUN sed -i "s|%%WORDPRESS_DB_PSSWD%%|$USER_PASSWORD|" /var/www/html/wordpress/wp-config.php
 RUN sed -i "s|listen =.*|listen = 0.0.0.0:9000|" /etc/php/7.3/fpm/pool.d/www.conf
-RUN ${WP_TOOLS}/install_wp_cli.sh
+# RUN ${WP_TOOLS}/install_wp_cli.sh
 # RUN wp core install --url=sylducam.42.fr --title=$DB_NAME --admin_user=$USER_NAME --admin_password=$USER_PASSWORD --allow-root --path=/var/www/html/wordpress
 
 LABEL description="wordpress"
