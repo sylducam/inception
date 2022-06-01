@@ -23,10 +23,10 @@
 define( 'DB_NAME', '%%DB_NAME%%' );
 
 /** MySQL database username */
-define( 'DB_USER', '%%WORDPRESS_DB_USER%%' ); // ICI
+define( 'DB_USER', '%%WORDPRESS_DB_USER%%' );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', '%%WORDPRESS_DB_PSSWD%%' ); // ICI
+define( 'DB_PASSWORD', '%%WORDPRESS_DB_PSSWD%%' );
 
 /** MySQL hostname */
 define( 'DB_HOST', 'mariadb:3306' );

@@ -10,4 +10,3 @@ service mysql start
 mv $DB_CONF/my.cnf /etc/mysql/my.cnf
 mysql -u root < $DB_CONF/db-config.sql
 sleep 1 # Waiting for mysql to finish the edit
-# service mysql stop

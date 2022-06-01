@@ -12,32 +12,22 @@ services:
         USER_PASSWORD: ${USER_PASSWORD}
         MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
         DB_NAME: ${DB_NAME}
+    restart: on-failure
     volumes:
       - wordpress-database:/var/lib/mysql
-    # configure the below healthcheck accordingly to what you need
-    # healthcheck:
-      # test: ["CMD", "curl", "-f", "http://localhost"]
-      # interval: 1m30s
-      # timeout: 10s
-      # retries: 3
-      # start_period: 40s
-    # restart: always
-    networks:                                                       # ++
-      - inception                                                   # ++
-    # command:
-      # tail -F anything
-# 2 line above to del
+    networks:
+      - inception
 
   server:
     container_name: nginx
     depends_on:
       - site
-    env_file: .env # needed ?
     build:
       context: requirements/nginx
       dockerfile: Dockerfile
     ports:
       - 443:443
+    restart: on-failure
     volumes:
       - nginx-logs:/home/sylducam/data/log/nginx
       - wordpress-files:/var/www/html/wordpress
@@ -59,6 +49,7 @@ services:
         WP_USER_NAME: ${WP_USER_NAME}
         WP_USER_PASSWORD: ${WP_USER_PASSWORD}
         WP_USER_EMAIL: ${WP_USER_EMAIL}
+    restart: on-failure
     volumes:
       - wordpress-files:/var/www/html/wordpress
     networks:
@@ -85,6 +76,3 @@ volumes:
 
 networks:
   inception: {}
-
-
-# each env variable you need need to be specified in each service
