@@ -1,5 +1,12 @@
 *** Always check running containers and images when you start a new work session
 
+it still seems to be an issue in your db-config.sql file. When launched, it says
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)
+
+volumes are mounted only after containers are run, which means that you can't use them in Dockerfiles
+so if you have any command you want to launch that uses volumes, do it in a script launched via the
+Dockerfile, not as a RUN command in the Dockerfile
+
 put sylducam.42.fr in env
 
 error when I make fclean

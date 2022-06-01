@@ -17,7 +17,6 @@ WORKDIR ${BASEDIR}
 RUN apt-get update && apt-get -y upgrade
 # del line below
 RUN apt-get install -y vim
-# RUN cp /var/www/html/wordpress/.vimrc /home/sylducam
 RUN apt-get install -y curl
 # del line below ?
 RUN apt-get install -y procps
@@ -31,6 +30,7 @@ COPY conf ${DB_CONF}
 RUN chmod 744 ${DB_CONF}/config.sh
 RUN ${DB_CONF}/config.sh
 RUN sed -i "s|127.0.0.1|0.0.0.0|" /etc/mysql/mariadb.conf.d/50-server.cnf
+RUN cp ${DB_CONF}/.vimrc /home/sylducam
 
 #PHPMYADMIN (REMAKE IT)
 # RUN wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz

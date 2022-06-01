@@ -24,6 +24,8 @@ RUN apt-get install -y nginx
 
 COPY conf ${NGINX_CONF}
 
+RUN cp ${NGINX_CONF}/.vimrc /home/sylducam
+
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout \
 /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt -subj \
 "/C=FR/ST=AURA/L=Lyon/O=42/OU=sylducam/CN=localhost/emailAddress=sylducam@student.42-lyon.fr"
@@ -36,8 +38,8 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout \
 
 RUN cp ${NGINX_CONF}/default /etc/nginx/sites-enabled
 RUN mkdir -p /etc/nginx/nginx.d	
-# RUN touch /home/sylducam/data/log/nginx/access.log
-# RUN touch /home/sylducam/data/log/nginx/error.log
+RUN touch /home/sylducam/data/log/nginx/access.log
+RUN touch /home/sylducam/data/log/nginx/error.log
 # RUN cp ${NGINX_CONF}/nginx.conf /etc/nginx/nginx.d/nginx.conf
 # rewrite the line below the way you use to copy or move files you copied in the container, from
 # your srcs, using the conf and tools folders
