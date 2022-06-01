@@ -13,7 +13,7 @@ services:
         MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
         DB_NAME: ${DB_NAME}
     volumes:
-      - wordpress-database:/var/www/html/wordpress
+      - wordpress-database:/var/lib/mysql
     # configure the below healthcheck accordingly to what you need
     # healthcheck:
       # test: ["CMD", "curl", "-f", "http://localhost"]
@@ -56,6 +56,9 @@ services:
         USER_NAME: ${USER_NAME}
         USER_PASSWORD: ${USER_PASSWORD}
         DB_NAME: ${DB_NAME}
+        WP_USER_NAME: ${WP_USER_NAME}
+        WP_USER_PASSWORD: ${WP_USER_PASSWORD}
+        WP_USER_EMAIL: ${WP_USER_EMAIL}
     volumes:
       - wordpress-files:/var/www/html/wordpress
     networks:
