@@ -38,8 +38,8 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout \
 
 RUN cp ${NGINX_CONF}/default /etc/nginx/sites-enabled
 RUN mkdir -p /etc/nginx/nginx.d	
-RUN touch /home/sylducam/data/log/nginx/access.log
-RUN touch /home/sylducam/data/log/nginx/error.log
+# RUN touch /home/sylducam/data/log/nginx/access.log
+# RUN touch /home/sylducam/data/log/nginx/error.log
 # RUN cp ${NGINX_CONF}/nginx.conf /etc/nginx/nginx.d/nginx.conf
 # rewrite the line below the way you use to copy or move files you copied in the container, from
 # your srcs, using the conf and tools folders
