@@ -13,7 +13,7 @@ services:
         MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
         DB_NAME: ${DB_NAME}
     volumes:
-      - wordpress-files:/home/sylducam/data/wordpress_database
+      - wordpress-database:/var/www/html/wordpress
     # configure the below healthcheck accordingly to what you need
     # healthcheck:
       # test: ["CMD", "curl", "-f", "http://localhost"]

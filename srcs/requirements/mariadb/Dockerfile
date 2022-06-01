@@ -17,6 +17,7 @@ WORKDIR ${BASEDIR}
 RUN apt-get update && apt-get -y upgrade
 # del line below
 RUN apt-get install -y vim
+# RUN cp /var/www/html/wordpress/.vimrc /home/sylducam
 RUN apt-get install -y curl
 # del line below ?
 RUN apt-get install -y procps
