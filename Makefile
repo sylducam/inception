@@ -27,9 +27,9 @@ clean	:	down
 			docker network rm inception || true
 
 fclean	:	clean
-			docker stop $(docker ps -a -q) || true
-			docker rm $(docker ps -a -q) || true
-			docker rmi -f $(docker images -a -q) || true
+			docker stop $$(docker ps -a -q) || true
+			docker rm $$(docker ps -a -q) || true
+			docker rmi -f $$(docker images -a -q) || true
 
 
 .PHONY	:	all execdb execwp execn down clean fclean
