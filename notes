@@ -1,7 +1,0 @@
-Maybe adding a file to a post, e.g. an image is not possible in the current state of my work. You would need to add a chown just like in ft_server.
-
-If you EXPOSE a port in a Dockerfile and you don't use a yaml (docker-compose)
-this port will be open to the outside.
-In the case of this project, as the three containers are on the same network
-(networks that is closed, to my understanding), it's not a security issue but
-it would be in another context.
